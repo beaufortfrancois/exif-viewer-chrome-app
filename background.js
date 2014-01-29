@@ -1,4 +1,4 @@
-chrome.app.runtime.onLaunched.addListener(function() {
+chrome.app.runtime.onLaunched.addListener(function(data) {
   var height = 512;
   var goldenRatio = (1 + Math.sqrt(5)) / 2
   var width = Math.round(height * goldenRatio);
@@ -11,5 +11,11 @@ chrome.app.runtime.onLaunched.addListener(function() {
       width: width,
       height: height,
     },
+  }, function(appWindow) {
+    if (!data)
+      return;
+    appWindow.contentWindow.addEventListener('load', function() {
+      appWindow.contentWindow.showImage(data.items[0].entry);
+    });
   });
 });

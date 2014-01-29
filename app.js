@@ -6,15 +6,17 @@ var thumbnail = document.querySelector('.thumbnail');
 
 function pickImage() {
     var options = {type: 'openFile', accepts: [{mimeTypes: ['image/jpeg']}]};
-    chrome.fileSystem.chooseEntry(options, function(fileEntry) {
-        fileEntry.file(function(file) {
-            var imageUrl = URL.createObjectURL(file);
-            thumbnail.style.backgroundImage = 'url(' + imageUrl + ')';
-            var reader = new FileReader();
-            reader.onload = getExifTags;
-            reader.readAsArrayBuffer(file);
-        });
-    })
+    chrome.fileSystem.chooseEntry(options, showImage);
+}
+
+function showImage(fileEntry) {
+    fileEntry.file(function(file) {
+        var imageUrl = URL.createObjectURL(file);
+        thumbnail.style.backgroundImage = 'url(' + imageUrl + ')';
+        var reader = new FileReader();
+        reader.onload = getExifTags;
+        reader.readAsArrayBuffer(file);
+    });
 }
 
 function getExifTags(event) {
@@ -42,7 +44,7 @@ function getExifTags(event) {
 function showError() {
     exifView.textContent = '';
     var p = document.createElement('p');
-    p.innerHTML = 'No EXIF data';
+    p.innerHTML = 'No Exif data';
     exifView.appendChild(p);
     searchBox.disabled = true;
 }

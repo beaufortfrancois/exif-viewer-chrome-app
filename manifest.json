@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "EXIF Viewer",
-  "description": "View Images EXIF Data",
+  "name": "Exif Viewer",
+  "description": "View Images Exif Data",
   "version": "0.1",
   "permissions": [ "fileSystem" ],
   "file_handlers": {
     "image": {
-      "types": [ "image/jpeg" ]
+      "types": [ "image/jpeg" ],
+      "title": "Exif Viewer"
     }
   },
   "app": {
