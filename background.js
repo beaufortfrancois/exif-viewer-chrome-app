@@ -12,7 +12,7 @@ chrome.app.runtime.onLaunched.addListener(function(data) {
       height: height,
     },
   }, function(appWindow) {
-    if (!data)
+    if (!data.items)
       return;
     appWindow.contentWindow.addEventListener('load', function() {
       appWindow.contentWindow.showImage(data.items[0].entry);
