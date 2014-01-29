@@ -4,6 +4,7 @@
   "description": "View Images Exif Data",
   "version": "0.1",
   "permissions": [ "fileSystem" ],
+  "icons" : { "128": "icons/128.png" },
   "file_handlers": {
     "image": {
       "types": [ "image/jpeg" ],

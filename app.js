@@ -10,9 +10,12 @@ function pickImage() {
 }
 
 function showImage(fileEntry) {
+    if (!fileEntry)
+        return;
     fileEntry.file(function(file) {
         var imageUrl = URL.createObjectURL(file);
         thumbnail.style.backgroundImage = 'url(' + imageUrl + ')';
+        thumbnail.classList.remove('empty');
         var reader = new FileReader();
         reader.onload = getExifTags;
         reader.readAsArrayBuffer(file);
